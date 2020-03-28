@@ -1,10 +1,10 @@
 import css from 'styled-jsx/css'
 import theme from '../../components/theme';
 
-export default css.global`
+export default css`
     h1 {    
-        font-size: ${theme.font.size.highlight};
-        margin: ${theme.spacing(6)} 0 ${theme.spacing(4)};
+        font-size: ${theme.font.size.mobileHighlight};
+        margin: ${theme.spacing(4)} 0 ${theme.spacing(2)};
     }
     ul {
         display: flex;
@@ -17,12 +17,25 @@ export default css.global`
     li {
         font-size: ${theme.font.size.subtitle};
         padding: 0 ${theme.spacing(1)} ${theme.spacing(3)};
-        width: 240px;
+        width: 50%;
     }
-    li .box {
-        align-items: flex-end;
-        display: flex;
-        height: 104px;
-        padding: ${theme.spacing(2)};
+    
+    @media ${theme.breakpoint.min.desk} {
+        h1 {    
+            font-size: ${theme.font.size.highlight};
+            margin: ${theme.spacing(6)} 0 ${theme.spacing(4)};
+        }
+    }
+    
+    @media ${theme.breakpoint.max.mobileL} {
+        li {
+            width: 33.33%;
+        }
+    }
+    
+    @media ${theme.breakpoint.min.tablet} {
+        li {
+            width: 25%;
+        }
     }
 `

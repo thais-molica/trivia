@@ -25,7 +25,7 @@ const Index = () => {
         <Container>
           <h1>Categorias</h1>
           <ul>
-            {categories.map(item => <li key={uuid()}><Link href={`/category=${item.id}`}><Category name={item.name} /></Link></li>)}
+            {categories.map(item => <li className="category-list" key={uuid()}><Link href={`/category=${item.id}`}><Category name={item.name} /></Link></li>)}
           </ul>
         </Container>
       </Base>

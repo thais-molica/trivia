@@ -5,5 +5,6 @@ export default css`
     div {    
         margin: 0 auto;
         max-width: ${theme.container};
+        padding: 0 ${theme.spacing(1)};
     }
 `
