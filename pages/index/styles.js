@@ -34,6 +34,10 @@ export default css`
     }
     
     @media ${theme.breakpoint.min.tablet} {
+        h1{
+            font-size: ${theme.font.size.tabletHighlight};
+            margin: ${theme.spacing(5)} 0 ${theme.spacing(4)};
+        }
         li {
             width: 25%;
         }

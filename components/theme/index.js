@@ -2,6 +2,7 @@ const theme = {
     palette: {
         primary: '#343C58',
         secondary: '#0467DB',
+        tertiary: '#d5d8de',
         white: '#fff',
         text: '#1E2124',
         error: '#FF4F4F',
@@ -13,11 +14,13 @@ const theme = {
     },
     font: {
         size: {
+            smaller: '12px',
             small: '14px',
             default: '16px',
             title: '24px',
             subtitle: '18px',
             mobileHighlight: '44px',
+            tabletHighlight: '34px',
             highlight: '44px'
         }
     },
