@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css'
-import theme from '../../components/theme';
+import theme from '../../../components/theme';
 
 export default css`
     h1 {    

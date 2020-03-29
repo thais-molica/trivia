@@ -1,12 +1,12 @@
 import React from 'react';
 import { v4 as uuid } from "uuid";
 import Link from "next/link";
-import Base from '../../components/base';
-import Box from '../../components/box';
-import Button from '../../components/button';
-import Score from '../../components/score';
-import FullScore from '../../components/fullScore';
-import styles from './styles';
+import Base from '../components/base';
+import Box from '../components/box';
+import Button from '../components/button';
+import Score from '../components/score';
+import FullScore from '../components/fullScore';
+import styles from '../assets/style/pages/result';
 
 const Result = () => {
   const total = [

@@ -1,9 +1,9 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 import Link from "next/link";
-import Base from "../../components/base";
-import Category from "../../components/category";
-import styles from "./styles";
+import Base from "../components/base";
+import Category from "../components/category";
+import styles from "../assets/style/pages/index";
 
 const Index = () => {
   const categories = [

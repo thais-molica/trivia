@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css'
-import theme from '../../components/theme';
-import IMG from '../../assets/imgs/mascot.svg';
+import theme from '../../../components/theme';
+import IMG from '../../imgs/mascot.svg';
 
 export default css`
     header {

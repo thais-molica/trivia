@@ -1,11 +1,11 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import Base from "../../components/base";
-import styles from "./styles";
-import CLOSE from "../../assets/imgs/close-btn.svg";
-import Level from "../../components/level";
-import Box from "../../components/box";
-import Button from "../../components/button";
+import Base from "../components/base";
+import styles from "../assets/style/pages/question";
+import CLOSE from "../assets/imgs/close-btn.svg";
+import Level from "../components/level";
+import Box from "../components/box";
+import Button from "../components/button";
 
 const Question = () => {
   const title = "História";
