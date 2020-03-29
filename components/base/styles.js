@@ -7,7 +7,7 @@ export default css.global`
     }
     body {    
         color: ${theme.palette.text};
-        font-family: ${theme.typography.main};
+        font-family: ${theme.typography.primary};
         font-size: ${theme.font.size.default};
         margin: 0;
     }
@@ -23,5 +23,12 @@ export default css.global`
         display: flex;
         height: 104px;
         padding: ${theme.spacing(2)};
+    }
+    .question-page >.box {
+        padding: ${theme.spacing(4)} ${theme.spacing(5)}
+    }
+    .question-item .box {
+        min-height: 60px;
+        padding: ${theme.spacing(2)}
     }
 `

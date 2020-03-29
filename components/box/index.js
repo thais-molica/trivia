@@ -1,21 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import style from './styles';
 
-const Box = ({ children }) => (
+
+const Box = ({ children, active }) => {
+  const { className, styles } = style(active)
+  
+  return (
   <>
-    <style jsx>{styles}</style>
-    <div className="box">
+    <div className={`${className} box`}>
       {children}
     </div>
+    {styles}
   </>
-);
+)};
 
 export default Box;
+
+Box.defaultProps = {
+  active: false
+};
 
 Box.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
-  ]).isRequired
+  ]).isRequired,
+  active: PropTypes.bool,
 };

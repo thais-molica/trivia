@@ -8,9 +8,11 @@ const theme = {
         error: '#FF4F4F',
         success: '#32CB82;',
         border: '#E4E4E6',
+        disabled: '#C9CCCF',
     },
     typography: {
-        main: 'Roboto',
+        primary: 'Roboto',
+        secondary: 'Avenir'
     },
     font: {
         size: {
