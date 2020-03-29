@@ -1,6 +1,7 @@
 # trivia
 
 ###Como rodar o projeto
+É preciso ter node e npm instalados na máquina, ao baixar o app, rodar ``npm i`` para instalar as dependências
 Para rodar o projeto em modo dev ``npm run dev``
 Para otimizar para produção ``npm run build``
 
