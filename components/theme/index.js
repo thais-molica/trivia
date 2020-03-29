@@ -8,6 +8,7 @@ const theme = {
         error: '#FF4F4F',
         success: '#32CB82;',
         border: '#E4E4E6',
+        borderDark: '#B8BED5',
         disabled: '#C9CCCF',
     },
     typography: {

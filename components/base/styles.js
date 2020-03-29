@@ -34,4 +34,10 @@ export default css.global`
         min-height: 60px;
         padding: ${theme.spacing(2)}
     }
+    .page-result .box {
+        margin: ${theme.spacing(7)} auto;
+        max-width: 534px;
+        text-align: center;
+        padding-bottom: ${theme.spacing(4)}
+    }
 `

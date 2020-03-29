@@ -18,7 +18,7 @@ const Index = () => {
   return (
     <>
       <style jsx>{styles}</style>
-      <Base>
+      <Base className="page-home">
         <h1>Categorias</h1>
         <ul>
           {categories.map(item => (

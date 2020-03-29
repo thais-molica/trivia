@@ -39,7 +39,7 @@ const Question = () => {
   return (
     <>
       <style jsx>{styles}</style>
-      <Base>
+      <Base className="page-question">
         <h1>
           {title}
           <span>

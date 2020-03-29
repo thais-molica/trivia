@@ -4,18 +4,19 @@ import Header from "..//header";
 import Container from "..//container";
 import styles from "./styles";
 
-const Base = ({ children }) => (
+const Base = ({ children, className }) => (
   <>
     <style jsx global>
       {styles}
     </style>
     <Header />
-    <Container>{children}</Container>
+    <Container className={className}>{children}</Container>
   </>
 );
 
 export default Base;
 
 Base.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  className: PropTypes.string,
 };

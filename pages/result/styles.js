@@ -4,14 +4,15 @@ import IMG from '../../assets/imgs/mascot.svg';
 
 export default css`
     header {
-        background: url(${IMG}) no-repeat 30% center ${theme.palette.secondary};
+        background: url(${IMG}) no-repeat 15% center ${theme.palette.secondary};
         color: ${theme.palette.white};
         display: flex;
         flex-direction: column;
         font-family: ${theme.typography.secondary};
         justify-content: center;
-        margin: ${theme.spacing(-1)};
+        margin: ${theme.spacing(-1)} ${theme.spacing(-1)} ${theme.spacing(8)};
         min-height: 237px;
+        position: relative;
     }
     span {
         display: block;
@@ -30,12 +31,26 @@ export default css`
     p {
         background: ${theme.palette.white};
         border-radius: 5px;
+        bottom: -32px;
         box-shadow: ${theme.shadow.large};
+        color: ${theme.palette.text};
+        display: inline-block;
         font-family: ${theme.typography.secondary};
         font-size: ${theme.font.size.small};
         font-weight: 900;
-        display: inline-block;
-        margin: -7px calc( 63% - 250px);
+        left: 50%;
         padding: ${theme.spacing(1)};
+        position: absolute;
+        transform: translateX(-50%);
+    }
+    ul {
+        display: flex;
+        margin: ${theme.spacing(5)} 0;
+    }
+    li {
+        flex: 1;
+    }
+    li + li {
+        border-left: 1px solid ${theme.palette.borderDark};
     }
 `
