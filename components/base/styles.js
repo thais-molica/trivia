@@ -18,6 +18,9 @@ export default css.global`
     li {
         list-style: none;
     }
+    h1, h2 {
+        margin: 0
+    }
     .category-list .box {
         align-items: flex-end;
         display: flex;

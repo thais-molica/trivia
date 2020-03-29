@@ -8,6 +8,7 @@ const style = (active) => {
       border-radius: ${theme.spacing(1)};
       border: ${active ? `3px solid ${theme.palette.secondary}` : `1px solid ${theme.palette.border}`};
       box-shadow: ${theme.shadow.main};
+      overflow: hidden;
       padding: ${theme.spacing(1)};
     }
   `;
