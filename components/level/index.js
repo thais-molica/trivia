@@ -4,15 +4,14 @@ import styles from "./styles";
 import Stars from '../star';
 
 const Level = ({ id }) => {
-  const levelList = ['Fácil', 'Médio', 'Difícil'];
   return (
     <>
       <style jsx>{styles}</style>
       <div>
-        <Stars alt="nível" />
-        <Stars alt="nível" disabled={id < 2} />
-        <Stars alt="nível" disabled={id < 3} />
-        <span>{levelList[id - 1]}</span>
+        <Stars alt="level" />
+        <Stars alt="level" disabled={id == 'easy'} />
+        <Stars alt="level" disabled={id == 'medium' || id == 'easy'} />
+        <span>{id}</span>
       </div>
     </>
   );
@@ -21,5 +20,5 @@ const Level = ({ id }) => {
 export default Level;
 
 Level.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.string.isRequired
 };

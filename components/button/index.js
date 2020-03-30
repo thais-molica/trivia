@@ -14,7 +14,10 @@ const Button = ({ label, onClick, disabled }) => (
 export default Button;
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool
 };

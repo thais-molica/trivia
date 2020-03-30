@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import style from './styles';
 
 
-const Box = ({ children, active }) => {
+const Box = ({ children, active, onClick }) => {
   const { className, styles } = style(active)
-  
+  const handleClick = () => {
+    if(onClick) onClick()
+  }
   return (
   <>
-    <div className={`${className} box`}>
+    <div className={`${className} box`} onClick={handleClick}>
       {children}
     </div>
     {styles}

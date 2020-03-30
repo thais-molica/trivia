@@ -13,5 +13,6 @@ export default css`
     }
     span {
         margin-left: 6px;
+        text-transform: capitalize;
     }
 `

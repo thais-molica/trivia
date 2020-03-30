@@ -30,5 +30,9 @@ export default css`
     li + li {
         margin-top: ${theme.spacing(2)};
     }
+
+    img {
+        vertical-align: middle;
+    }
     
 `
