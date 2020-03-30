@@ -1,19 +1,11 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import Link from "next/link";
 import Base from "../components/base";
 import Category from "../components/category";
 import styles from "../assets/style/pages/index";
+import categories from '../utils/categories';
 
 const Index = () => {
-  const categories = [
-    { name: "História", id: 1 },
-    { name: "Geografia", id: 3 },
-    { name: "Mitologia", id: 3 },
-    { name: "Esportes", id: 3 },
-    { name: "Política", id: 3 },
-    { name: "Conhecimentos Gerais", id: 3 }
-  ];
 
   return (
     <>
@@ -23,9 +15,9 @@ const Index = () => {
         <ul>
           {categories.map(item => (
             <li className="category-list" key={uuid()}>
-              <Link href={`/category=${item.id}`}>
+              <a href={`/question?category=${item.id}`}>
                 <Category name={item.name} />
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

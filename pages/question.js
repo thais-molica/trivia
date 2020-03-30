@@ -6,6 +6,7 @@ import CLOSE from "../assets/imgs/close-btn.svg";
 import Level from "../components/level";
 import Box from "../components/box";
 import Button from "../components/button";
+import Modal from "../components/modal";
 
 const Question = () => {
   const title = "História";
@@ -39,12 +40,13 @@ const Question = () => {
   return (
     <>
       <style jsx>{styles}</style>
+      <Modal  />
       <Base className="page-question">
         <h1>
           {title}
-          <span>
+          <a href="/">
             <img src={CLOSE} alt="Fechar" /> Fechar
-          </span>
+          </a>
         </h1>
         <Box>
           <h2>

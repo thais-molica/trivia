@@ -21,13 +21,17 @@ export default css.global`
     h1, h2 {
         margin: 0
     }
+    a {
+        color: ${theme.palette.text};
+        text-decoration: none;
+    }
     .category-list .box {
         align-items: flex-end;
         display: flex;
         height: 104px;
         padding: ${theme.spacing(2)};
     }
-    .question-page >.box {
+    .page-question >.box {
         padding: ${theme.spacing(4)} ${theme.spacing(5)}
     }
     .question-item .box {

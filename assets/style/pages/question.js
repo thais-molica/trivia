@@ -7,7 +7,7 @@ export default css`
         margin: ${theme.spacing(2)} 0;
     }
 
-    h1 span {
+    h1 a {
         cursor: pointer;
         font-size: ${theme.font.size.small};
         float: right;
