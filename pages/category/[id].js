@@ -1,25 +1,19 @@
 import React, {useState, useEffect} from "react";
+import { useRouter } from 'next/router';
 import { v4 as uuid } from "uuid";
 import axios from "axios";
-import Base from "../components/base";
-import styles from "../assets/style/pages/question";
-import CLOSE from "../assets/imgs/close-btn.svg";
-import Level from "../components/level";
-import Box from "../components/box";
-import Button from "../components/button";
-import Modal from "../components/modal";
+import Base from "../../components/base";
+import styles from "../../assets/style/pages/question";
+import CLOSE from "../../assets/imgs/close-btn.svg";
+import Level from "../../components/level";
+import Box from "../../components/box";
+import Button from "../../components/button";
+import Modal from "../../components/modal";
+import shuffle from "../../utils/shuffle";
 
 const Question = () => {
-
-  const shuffle = array => {
-    for(let i = array.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * i)
-      const temp = array[i]
-      array[i] = array[j]
-      array[j] = temp
-    }
-    return array;
-  }
+  const router = useRouter();
+  const categoryId = router.query.id;
 
   const QuestionService = (category, difficulty) => {
     axios
@@ -43,10 +37,9 @@ const Question = () => {
       });
   };
 
-
   useEffect(() => {
-    QuestionService(9,2)
-  }, [])
+    QuestionService(categoryId, 2)
+  }, [categoryId])
 
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
@@ -57,17 +50,16 @@ const Question = () => {
 
   const [selectedId, setSelectedId] = useState(null);
   const [hasAnswer, setHasAnswer] = useState(false);
-  const [rightAnswer, setRightAnswer] = useState(false);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [data, setData] = useState(null);
 
   const handleSelect = (id, item) => {
     setSelectedId(id);
     if(item == correctAnswer) {
-      setRightAnswer(true)
+      setIsCorrectAnswer(true)
     } else {
-      setRightAnswer(false)
+      setIsCorrectAnswer(false)
     }
-    console.log(item, correctAnswer, rightAnswer)
   }
 
   const setAnswer = () => {
@@ -99,7 +91,7 @@ const Question = () => {
           <Button label="Responder" onClick={setAnswer} disabled={!selectedId} />
         </Box>
       </Base>
-      {hasAnswer && <Modal success={rightAnswer}  />}
+      {hasAnswer && <Modal success={isCorrectAnswer}  />}
     </>
   );
 };

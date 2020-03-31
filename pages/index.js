@@ -15,7 +15,7 @@ const Index = () => {
         <ul>
           {categories.map(item => (
             <li className="category-list" key={uuid()}>
-              <a href={`/question?category=${item.id}`}>
+              <a href={`/category/${item.id}`}>
                 <Category name={item.name} />
               </a>
             </li>
