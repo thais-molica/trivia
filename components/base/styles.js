@@ -39,9 +39,21 @@ export default css.global`
         padding: ${theme.spacing(2)}
     }
     .page-result .box {
-        margin: ${theme.spacing(7)} auto;
         max-width: 534px;
         text-align: center;
         padding-bottom: ${theme.spacing(4)}
+    }
+    @media ${theme.breakpoint.min.mobileL} {
+        .page-result .box {
+            margin: ${theme.spacing(7)} auto;
+        }
+    } 
+    @media ${theme.breakpoint.max.mobileL} {
+        .page-question button {
+            width: 100%;
+        }
+        .page-result .box {
+            overflow: inherit;
+        }
     }
 `

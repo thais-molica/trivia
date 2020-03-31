@@ -28,6 +28,12 @@ export default css`
     }
     
     @media ${theme.breakpoint.max.mobileL} {
+        h1 {
+            padding: 0 ${theme.spacing(2)};
+        }
+    }
+    
+    @media ${theme.breakpoint.min.mobileL} {
         li {
             width: 33.33%;
         }

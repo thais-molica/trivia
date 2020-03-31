@@ -88,10 +88,12 @@ const Question = () => {
               </li>
             ))}
           </ul>
-          <Button label="Responder" onClick={setAnswer} disabled={!selectedId} />
+          <footer>
+            <Button label="Responder" onClick={setAnswer} disabled={!selectedId} />
+          </footer>
         </Box>
       </Base>
-      {hasAnswer && <Modal success={isCorrectAnswer}  />}
+      {hasAnswer && <Modal success={isCorrectAnswer} onClose={() => window.location.href = `/result/${categoryId}`}  />}
     </>
   );
 };

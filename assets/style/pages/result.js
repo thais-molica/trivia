@@ -42,6 +42,7 @@ export default css`
         padding: ${theme.spacing(1)};
         position: absolute;
         transform: translateX(-50%);
+        white-space: nowrap;
     }
     ul {
         display: flex;
@@ -52,5 +53,14 @@ export default css`
     }
     li + li {
         border-left: 1px solid ${theme.palette.borderDark};
+    }
+
+    @media ${theme.breakpoint.max.mobileL} {
+        header {
+            background-position: ${theme.spacing(3)} center;
+            padding-left: ${theme.spacing(7.5)};
+            margin-left: -9px;
+            margin-right: -9px;
+        }
     }
 `

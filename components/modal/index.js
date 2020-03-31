@@ -15,7 +15,7 @@ const Modal = ({ children, onClose, success}) => {
     <>
       <style jsx>{style}</style>
       {styles}
-      <span onClick={handleClose} />
+      <span />
       <div className={className}>
         <em><img src={success ? SUCCESS : ERROR } alt={success ? 'sucesso' : 'erro'} /></em>
         <p>{success ? 'Você acertou!' : 'Você errou!'}</p>

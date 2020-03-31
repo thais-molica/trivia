@@ -17,6 +17,6 @@ const Base = ({ children, className }) => (
 export default Base;
 
 Base.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]).isRequired,
   className: PropTypes.string,
 };

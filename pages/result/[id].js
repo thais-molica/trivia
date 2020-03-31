@@ -1,14 +1,16 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { v4 as uuid } from "uuid";
 import Link from "next/link";
-import Base from '../components/base';
-import Box from '../components/box';
-import Button from '../components/button';
-import Score from '../components/score';
-import FullScore from '../components/fullScore';
-import styles from '../assets/style/pages/result';
+import Base from '../../components/base';
+import Box from '../../components/box';
+import Button from '../../components/button';
+import Score from '../../components/score';
+import FullScore from '../../components/fullScore';
+import styles from '../../assets/style/pages/result';
 
 const Result = () => {
+  const router = useRouter();
   const total = [
     {title: 'Fácil', correct: 2, error: 1},
     {title: 'Médio', correct: 2, error: 1},
@@ -30,9 +32,7 @@ const Result = () => {
             <ul>
               {total.map(item => <li key={uuid()}><Score title={item.title} correct={item.correct} error={item.error} /></li>)}
             </ul>
-            <Link href="/">
-              <Button label="Voltar ao início" onClick={()=>{}}/>
-            </Link>
+            <Button label="Voltar ao início" onClick={()=>{window.location = '/'}}/>
           </Box>
       </Base>
       </>

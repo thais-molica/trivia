@@ -7,14 +7,10 @@ export default css`
         margin: ${theme.spacing(2)} 0;
     }
 
-    h1 a {
+    a {
         cursor: pointer;
         font-size: ${theme.font.size.small};
         float: right;
-    }
-
-    h1 span img {
-        vertical-align: middle;
     }
 
     h2 {
@@ -33,6 +29,25 @@ export default css`
 
     img {
         vertical-align: middle;
+    }
+
+    @media ${theme.breakpoint.max.mobileL} {
+        h1 {
+            padding: 0 ${theme.spacing(2)};
+        }
+        footer {
+            position: relative;
+        }
+        footer:before {
+            content: '';
+            box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.25);
+            position: relative;
+            height: 1px;
+            display: block;
+            left: -40px;
+            width: calc(100% + 80px);
+            top: -16px;
+        }
     }
     
 `
