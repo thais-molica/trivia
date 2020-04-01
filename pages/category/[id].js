@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from "react";
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
+// import { useCookies } from 'react-cookie';
+import { useDispatch, useSelector } from "react-redux";
+import {incrementTotalAwswer} from '../../redux/actions/questionActions';
 import Base from "../../components/base";
 import styles from "../../assets/style/pages/question";
 import CLOSE from "../../assets/imgs/close-btn.svg";
@@ -10,19 +13,24 @@ import Box from "../../components/box";
 import Button from "../../components/button";
 import Modal from "../../components/modal";
 import shuffle from "../../utils/shuffle";
+import difficultyDic from "../../utils/difficulty";
 
 const Question = () => {
   const router = useRouter();
   const categoryId = router.query.id;
+  const dispatch = useDispatch();
 
-  const QuestionService = (category, difficulty) => {
-    axios
-      .get(`https://opentdb.com/api.php?amount=1&category=${category}&difficulty${difficulty}`)
-      .then(function(response) {
-        if(!data) {
+  const totalAnwser = useSelector(state => state.totalAnswer);
+
+  const QuestionService = (category, difficulty = 1) => {
+    if (category) {
+      axios
+        .get(
+          `https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficultyDic[difficulty]}`
+        )
+        .then(function(response) {
           response = response.data.results[0];
           const questions = response.incorrect_answers;
-          setData(response);
           setTitle(response.category);
           setText(response.question);
           setDifficulty(response.difficulty);
@@ -30,70 +38,107 @@ const Question = () => {
           shuffle(questions);
           setCorrectAnswer(response.correct_answer);
           setList(questions);
-        }
-      })
-      .catch(function(error) {
-        return error;
-      });
+          setisLoading(false);
+        })
+        .catch(function(error) {
+          return error;
+        });
+    }
   };
 
   useEffect(() => {
-    QuestionService(categoryId, 2)
-  }, [categoryId])
+    QuestionService(categoryId, 0);
+  }, [categoryId]);
 
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [correctAnswer, setCorrectAnswer] = useState(''); 
-  const [list, setList] = useState('');
-  const number = 1;
+  const [isLoading, setisLoading] = useState(true);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
+  const [list, setList] = useState("");
+  // const [totalAnwser, setTotalAnwser] = useState(1);
 
   const [selectedId, setSelectedId] = useState(null);
   const [hasAnswer, setHasAnswer] = useState(false);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
-  const [data, setData] = useState(null);
 
   const handleSelect = (id, item) => {
     setSelectedId(id);
-    if(item == correctAnswer) {
-      setIsCorrectAnswer(true)
+    if (item == correctAnswer) {
+      setIsCorrectAnswer(true);
     } else {
-      setIsCorrectAnswer(false)
+      setIsCorrectAnswer(false);
     }
-  }
+  };
 
-  const setAnswer = () => {
+  const submitAnswer = () => {
     setHasAnswer(true);
-  }
+  };
+
+  const clearAnswer = () => {
+    setHasAnswer(false);
+    setSelectedId(null);
+    setisLoading(true);
+  };
+
+  const nextQuestion = () => {
+    clearAnswer();
+    QuestionService(categoryId, 0);
+  };
+
+  const handleNext = () => {
+    //setTotalAnwser(totalAnwser + 1);
+    dispatch(incrementTotalAwswer());
+
+    if (totalAnwser == 10) {
+      window.location.href = `/result/${categoryId}`;
+    } else {
+      nextQuestion();
+    }
+  };
 
   return (
     <>
       <style jsx>{styles}</style>
       <Base className="page-question">
-        <h1>
-          {title}
-          <a href="/">
-            <img src={CLOSE} alt="Fechar" /> Fechar
-          </a>
-        </h1>
-        <Box>
-          <h2>
-            Questão {number} <Level id={difficulty} />
-          </h2>
-          <p>{text}</p>
-          <ul className="question-item">
-            {list && list.map((item, index) => (
-              <li key={uuid()}>
-                <Box onClick={()=> handleSelect(index, item)} active={selectedId == index}>{item}</Box>
-              </li>
-            ))}
-          </ul>
-          <footer>
-            <Button label="Responder" onClick={setAnswer} disabled={!selectedId} />
-          </footer>
-        </Box>
+        {!isLoading && (
+          <>
+            <h1>
+              {title}
+              <a href="/">
+                <img src={CLOSE} alt="Fechar" /> Fechar
+              </a>
+            </h1>
+            <Box>
+              <h2>
+                Questão {totalAnwser} <Level id={difficulty} />
+              </h2>
+              <p>{text}</p>
+              <ul className="question-item">
+                {list &&
+                  list.map((item, index) => (
+                    <li key={uuid()}>
+                      <Box
+                        onClick={() => handleSelect(index, item)}
+                        active={selectedId == index}
+                      >
+                        {item}
+                      </Box>
+                    </li>
+                  ))}
+              </ul>
+              <footer>
+                <Button
+                  label="Responder"
+                  onClick={submitAnswer}
+                  disabled={!selectedId}
+                />
+              </footer>
+            </Box>
+          </>
+        )}
       </Base>
-      {hasAnswer && <Modal success={isCorrectAnswer} onClose={() => window.location.href = `/result/${categoryId}`}  />}
+      {hasAnswer && <Modal success={isCorrectAnswer} onClose={handleNext} />}
     </>
   );
 };
