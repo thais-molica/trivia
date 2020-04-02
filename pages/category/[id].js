@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import axios from "axios";
 // import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from "react-redux";
-import {incrementTotalAwswer} from '../../redux/actions/questionActions';
+import { incrementTotalAwswer } from "../../redux/actions/questionActions";
 import Base from "../../components/base";
 import styles from "../../assets/style/pages/question";
 import CLOSE from "../../assets/imgs/close-btn.svg";
@@ -17,10 +17,13 @@ import difficultyDic from "../../utils/difficulty";
 
 const Question = () => {
   const router = useRouter();
-  const categoryId = router.query.id;
+  const categoryId = parseInt(router.query.id);
   const dispatch = useDispatch();
 
-  const totalAnwser = useSelector(state => state.totalAnswer);
+  let totalAnwser = 1;
+  // useSelector(state =>
+  //   state.map(item => {if(item.id == categoryId) totalAnwser = item.total +=1})
+  // );
 
   const QuestionService = (category, difficulty = 1) => {
     if (category) {
@@ -56,11 +59,14 @@ const Question = () => {
   const [difficulty, setDifficulty] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [list, setList] = useState("");
-  // const [totalAnwser, setTotalAnwser] = useState(1);
 
   const [selectedId, setSelectedId] = useState(null);
   const [hasAnswer, setHasAnswer] = useState(false);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
+
+  useEffect(() => {
+    console.log(selectedId)
+  }, [selectedId]);
 
   const handleSelect = (id, item) => {
     setSelectedId(id);
@@ -87,8 +93,7 @@ const Question = () => {
   };
 
   const handleNext = () => {
-    //setTotalAnwser(totalAnwser + 1);
-    dispatch(incrementTotalAwswer());
+    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer));
 
     if (totalAnwser == 10) {
       window.location.href = `/result/${categoryId}`;
@@ -131,7 +136,7 @@ const Question = () => {
                 <Button
                   label="Responder"
                   onClick={submitAnswer}
-                  disabled={!selectedId}
+                  disabled={selectedId == null}
                 />
               </footer>
             </Box>
