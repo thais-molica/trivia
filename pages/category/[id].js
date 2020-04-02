@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
-// import { useCookies } from 'react-cookie';
 import { useDispatch, useSelector } from "react-redux";
 import { incrementTotalAwswer } from "../../redux/actions/questionActions";
 import Base from "../../components/base";
@@ -21,9 +20,12 @@ const Question = () => {
   const dispatch = useDispatch();
 
   let totalAnwser = 1;
-  // useSelector(state =>
-  //   state.map(item => {if(item.id == categoryId) totalAnwser = item.total +=1})
-  // );
+  const state = useSelector(state => state);
+  console.log(state)
+  const itemIndex = state.findIndex(el => el.id == categoryId);
+  if (itemIndex >= 0) {
+    totalAnwser = state[itemIndex].total + 1;
+  }
 
   const QuestionService = (category, difficulty = 1) => {
     if (category) {
@@ -64,10 +66,6 @@ const Question = () => {
   const [hasAnswer, setHasAnswer] = useState(false);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
-  useEffect(() => {
-    console.log(selectedId)
-  }, [selectedId]);
-
   const handleSelect = (id, item) => {
     setSelectedId(id);
     if (item == correctAnswer) {
@@ -96,7 +94,7 @@ const Question = () => {
     dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer));
 
     if (totalAnwser == 10) {
-      window.location.href = `/result/${categoryId}`;
+      Router.push(`/result/${categoryId}`);
     } else {
       nextQuestion();
     }

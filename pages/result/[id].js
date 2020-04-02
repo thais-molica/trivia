@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { v4 as uuid } from "uuid";
-import Link from "next/link";
+import { useSelector } from "react-redux";
 import Base from '../../components/base';
 import Box from '../../components/box';
 import Button from '../../components/button';
@@ -11,6 +11,10 @@ import styles from '../../assets/style/pages/result';
 
 const Result = () => {
   const router = useRouter();
+  const categoryId = parseInt(router.query.id);
+
+  const categoryResults = useSelector(state => state.find(el => el.id == categoryId));
+  
   const total = [
     {title: 'Fácil', correct: 2, error: 1},
     {title: 'Médio', correct: 2, error: 1},
@@ -28,7 +32,7 @@ const Result = () => {
               </span>
               <p>Veja seu desempenho nas questões</p>
             </header>
-            <FullScore correct={3} error={3} />
+            <FullScore correct={categoryResults.totalCorrect} error={categoryResults.totalIncorrect} />
             <ul>
               {total.map(item => <li key={uuid()}><Score title={item.title} correct={item.correct} error={item.error} /></li>)}
             </ul>
