@@ -5,6 +5,7 @@ export default css`
     strong {
         font-size: ${theme.font.size.small};
         font-weight: 900;
+        text-transform: capitalize;
     }
     span {
         display: block;

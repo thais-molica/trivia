@@ -17,6 +17,11 @@ import difficultyDic from "../../utils/difficulty";
 const Question = () => {
   const router = useRouter();
   const categoryId = parseInt(router.query.id);
+
+  const redirectToResult = () => {
+    Router.push(`/result/${categoryId}`);
+  }
+
   const dispatch = useDispatch();
 
   let totalAnwser = 1;
@@ -24,21 +29,24 @@ const Question = () => {
   console.log(state)
   const itemIndex = state.findIndex(el => el.id == categoryId);
   if (itemIndex >= 0) {
+    if(state[itemIndex].total >= 10) {redirectToResult()}
     totalAnwser = state[itemIndex].total + 1;
   }
 
-  const QuestionService = (category, difficulty = 1) => {
+  let difficultyIndex = 1;
+  let difficulty = difficultyDic[difficultyIndex];
+
+  const QuestionService = (category, difficulty = difficulty) => {
     if (category) {
       axios
         .get(
-          `https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficultyDic[difficulty]}`
+          `https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficulty}`
         )
         .then(function(response) {
           response = response.data.results[0];
           const questions = response.incorrect_answers;
           setTitle(response.category);
           setText(response.question);
-          setDifficulty(response.difficulty);
           questions.push(response.correct_answer);
           shuffle(questions);
           setCorrectAnswer(response.correct_answer);
@@ -58,7 +66,6 @@ const Question = () => {
   const [isLoading, setisLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
-  const [difficulty, setDifficulty] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [list, setList] = useState("");
 
@@ -91,11 +98,9 @@ const Question = () => {
   };
 
   const handleNext = () => {
-    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer));
+    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer, difficultyIndex));
 
-    if (totalAnwser == 10) {
-      Router.push(`/result/${categoryId}`);
-    } else {
+    if (totalAnwser < 10) {
       nextQuestion();
     }
   };
