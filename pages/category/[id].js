@@ -109,7 +109,15 @@ const Question = () => {
 
   const submitAnswer = () => {
     setHasAnswer(true);
-    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer, difficulty));
+    const question = {
+        text: text,
+        selectedAnswer: list[selectedId],
+        difficulty: difficultyDic[difficulty],
+        correctAnswer: correctAnswer,
+        dateTime : new Date().toLocaleString(),
+        isCorrect: isCorrectAnswer
+      }
+    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer, difficulty, question));
   };
 
   const clearAnswer = () => {

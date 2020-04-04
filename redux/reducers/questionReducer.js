@@ -22,6 +22,7 @@ const questionReducer = (state = initialState, action) => {
           item.prevDifficulty = item.difficulty;
           item.difficulty = action.payload.difficulty;
           state[itemIndex] = item;
+          item.question.push(action.payload.question);
         }
         return [...state];
       } else {
@@ -50,7 +51,8 @@ const questionReducer = (state = initialState, action) => {
               totalCorrect: 0,
               totalIncorrect: 0
             }
-          ]
+          ],
+          question: [action.payload.question]
         };
         if (action.payload.isCorrect) {
           item.level[action.payload.difficulty].totalCorrect = 1;

@@ -13,7 +13,7 @@ const theme = {
     },
     typography: {
         primary: 'Roboto',
-        secondary: 'Avenir'
+        secondary: 'Lato'
     },
     font: {
         size: {

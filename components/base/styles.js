@@ -3,6 +3,7 @@ import theme from "../theme";
 
 export default css.global`
   @import url("https://fonts.googleapis.com/css?family=Roboto:400,500");
+  @import url("https://fonts.googleapis.com/css?family=Lato:400,500");
   * {
     box-sizing: border-box;
   }
