@@ -29,4 +29,5 @@ Box.propTypes = {
     PropTypes.array,
   ]).isRequired,
   active: PropTypes.bool,
+  onClick: PropTypes.func
 };

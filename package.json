@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "lint": "./node_modules/.bin/eslint pages/*.js components/**/*.js assets/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
   "homepage": "https://github.com/thais-molica/trivia#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "fsevents": "^1.2.9",
     "next": "^9.3.2",
     "next-redux-wrapper": "^5.0.0",
     "prop-types": "^15.7.2",
