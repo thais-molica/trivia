@@ -17,53 +17,59 @@ import difficultyDic from "../../utils/difficulty";
 const Question = () => {
   const router = useRouter();
   const categoryId = parseInt(router.query.id);
+  const [difficulty, setDifficulty] = useState(1);
 
   const redirectToResult = () => {
     Router.push(`/result/${categoryId}`);
-  }
+  };
 
   const dispatch = useDispatch();
 
   let totalAnwser = 1;
   const state = useSelector(state => state);
-  console.log(state)
   const itemIndex = state.findIndex(el => el.id == categoryId);
   if (itemIndex >= 0) {
-    if(state[itemIndex].total >= 10) {redirectToResult()}
+    if (state[itemIndex].total >= 10) {
+      redirectToResult();
+    }
     totalAnwser = state[itemIndex].total + 1;
   }
 
-  let difficultyIndex = 1;
-  let difficulty = difficultyDic[difficultyIndex];
-
-  const QuestionService = (category, difficulty = difficulty) => {
+  const QuestionService = (category, difficulty) => {
     if (category) {
       axios
         .get(
-          `https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficulty}`
+          `https://opentdb.com/api.php?amount=1&type=multiple&category=${category}&difficulty=${difficultyDic[difficulty]}`
         )
         .then(function(response) {
-          response = response.data.results[0];
-          const questions = response.incorrect_answers;
-          setTitle(response.category);
-          setText(response.question);
-          questions.push(response.correct_answer);
-          shuffle(questions);
-          setCorrectAnswer(response.correct_answer);
-          setList(questions);
-          setisLoading(false);
+          if (response.data) {
+            response = response.data.results[0];
+            const questions = response.incorrect_answers;
+            setTitle(response.category);
+            setText(response.question);
+            questions.push(response.correct_answer);
+            shuffle(questions);
+            setCorrectAnswer(response.correct_answer);
+            setList(questions);
+            setisLoading(false);
+            setDifficulty(difficultyDic.indexOf(response.difficulty));
+          } else {
+            setisLoading(false);
+            setError(true);
+          }
         })
-        .catch(function(error) {
-          return error;
+        .catch(function() {
+          setError(true);
         });
     }
   };
 
   useEffect(() => {
-    QuestionService(categoryId, 0);
+    QuestionService(categoryId, getDifficulty());
   }, [categoryId]);
 
   const [isLoading, setisLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState("");
@@ -72,6 +78,24 @@ const Question = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [hasAnswer, setHasAnswer] = useState(false);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
+
+  const getDifficulty = () => {
+    if (itemIndex >= 0) {
+      if (
+        state[itemIndex].difficulty == state[itemIndex].prevDifficulty &&
+        state[itemIndex].isCorrect == state[itemIndex].prevCorrect
+      ) {
+        if (isCorrectAnswer && state[itemIndex].difficulty < 2) {
+          return state[itemIndex].difficulty + 1;
+        }
+        if (!isCorrectAnswer && state[itemIndex].difficulty > 0) {
+          return state[itemIndex].difficulty - 1;
+        }
+      }
+      return state[itemIndex].difficulty;
+    }
+    return 1;
+  };
 
   const handleSelect = (id, item) => {
     setSelectedId(id);
@@ -84,6 +108,7 @@ const Question = () => {
 
   const submitAnswer = () => {
     setHasAnswer(true);
+    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer, difficulty));
   };
 
   const clearAnswer = () => {
@@ -93,15 +118,16 @@ const Question = () => {
   };
 
   const nextQuestion = () => {
+    setDifficulty(getDifficulty());
     clearAnswer();
-    QuestionService(categoryId, 0);
+    QuestionService(categoryId, getDifficulty());
   };
 
   const handleNext = () => {
-    dispatch(incrementTotalAwswer(categoryId, isCorrectAnswer, difficultyIndex));
-
-    if (totalAnwser < 10) {
+    if (totalAnwser <= 10) {
       nextQuestion();
+    } else {
+      redirectToResult();
     }
   };
 
@@ -145,6 +171,7 @@ const Question = () => {
             </Box>
           </>
         )}
+        {error && "Ocorreu um erro"}
       </Base>
       {hasAnswer && <Modal success={isCorrectAnswer} onClose={handleNext} />}
     </>

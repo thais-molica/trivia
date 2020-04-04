@@ -4,8 +4,10 @@ import theme from '../theme';
 export default css`
     header {    
         background: ${theme.palette.primary}; 
-        color: ${theme.palette.white}; 
         font-size: ${theme.font.size.subtitle};
         padding: ${theme.spacing(2)}
+    }
+    a {
+        color: ${theme.palette.white}; 
     }
 `

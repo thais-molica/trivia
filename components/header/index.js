@@ -6,7 +6,7 @@ const Header = ({ text }) => {
   return (
     <>
       <style jsx>{styles}</style>
-      <header>{text}</header>
+      <header><a href="/">{text}</a></header>
     </>
   );
 };

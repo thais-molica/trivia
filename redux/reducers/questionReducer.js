@@ -1,5 +1,4 @@
 import { INCREMENT_TOTAL_ANSWER } from "../actions/questionActions";
-import Router from "next/router";
 
 let initialState = [];
 
@@ -17,11 +16,12 @@ const questionReducer = (state = initialState, action) => {
             item.totalIncorrect += 1;
             item.level[action.payload.difficulty].totalIncorrect += 1;
           }
+          item.prevCorrect = item.isCorrect;
+          item.isCorrect = action.payload.isCorrect;
           item.total += 1;
-          item.diffucylty = action.payload.diffucylty;
+          item.prevDifficulty = item.difficulty;
+          item.difficulty = action.payload.difficulty;
           state[itemIndex] = item;
-        } else {
-          Router.push(`/result/${action.payload.id}`);
         }
         return [...state];
       } else {
@@ -30,7 +30,10 @@ const questionReducer = (state = initialState, action) => {
           totalCorrect: action.payload.isCorrect ? 1 : 0,
           totalIncorrect: action.payload.isCorrect ? 0 : 1,
           total: 1,
-          diffucylty: action.payload.difficulty,
+          difficulty: action.payload.difficulty,
+          prevDifficulty: null,
+          prevCorrect: null,
+          isCorrect: action.payload.isCorrect,
           level: [
             {
               type: "easy",
