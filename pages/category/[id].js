@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import Router, { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
@@ -133,6 +134,11 @@ const Question = () => {
 
   return (
     <>
+      <Head>
+        <title>
+          {title} - Questão {totalAnwser}
+        </title>
+      </Head>
       <style jsx>{styles}</style>
       <Base className="page-question">
         {!isLoading && (

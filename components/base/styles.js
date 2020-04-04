@@ -35,6 +35,7 @@ export default css.global`
         padding: ${theme.spacing(4)} ${theme.spacing(5)}
     }
     .question-item .box {
+        cursor: pointer;
         min-height: 60px;
         padding: ${theme.spacing(2)}
     }

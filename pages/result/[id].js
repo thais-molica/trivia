@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
 import { useSelector } from "react-redux";
@@ -8,28 +9,26 @@ import Button from "../../components/button";
 import Score from "../../components/score";
 import FullScore from "../../components/fullScore";
 import styles from "../../assets/style/pages/result";
+import categories from "../../utils/categories";
 
 const Result = () => {
   const [isLoading, setisLoading] = useState(true);
   const router = useRouter();
   const categoryId = parseInt(router.query.id);
+  const category = categories.filter(item => item.id == categoryId)[0].name;
 
   const categoryResults = useSelector(state =>
     state.find(el => el.id == categoryId)
   );
-  console.log(categoryResults);
-
-  const total = [
-    { title: "Fácil", correct: 2, error: 1 },
-    { title: "Médio", correct: 2, error: 1 },
-    { title: "Difícil", correct: 2, error: 1 }
-  ];
 
   useEffect(() => {
     setisLoading(false);
   }, [categoryResults]);
   return (
     <>
+      <Head>
+        <title>Trivia - Resultado - {category}</title>
+      </Head>
       <style jsx>{styles}</style>
       <Base className="page-result">
         <Box>
