@@ -4,6 +4,7 @@ import theme from '../theme';
 export default css`
     button {    
         background: ${theme.palette.secondary};
+        border: none;
         border-radius: ${theme.spacing(1)};
         color: ${theme.palette.white};
         cursor: pointer;

@@ -8,8 +8,8 @@ const Score = ({ title, correct, error }) => {
       <style jsx>{styles}</style>
       <>
         <strong>{title}</strong>
-        <span>Acertos: {correct}</span>
-        <span>Erros: {error}</span>
+        <span>Correct: {correct}</span>
+        <span>Incorrect: {error}</span>
       </>
     </>
   );

@@ -17,7 +17,7 @@ export default css`
     span {
         display: block;
         margin: 0 auto;
-        padding-left: ${theme.spacing(4)};
+        padding-left: ${theme.spacing(11)};
         text-align: left;
     }
     h1 {
@@ -58,9 +58,16 @@ export default css`
     @media ${theme.breakpoint.max.mobileL} {
         header {
             background-position: ${theme.spacing(3)} center;
+            background-size: 25%;
             padding-left: ${theme.spacing(7.5)};
             margin-left: -9px;
             margin-right: -9px;
+        }
+        h1 {
+            font-size: ${theme.font.size.mobileHighlight};
+        }
+        span {
+            padding-left: ${theme.spacing(4)};
         }
     }
 `

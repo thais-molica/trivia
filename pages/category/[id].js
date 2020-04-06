@@ -120,7 +120,7 @@ const Question = () => {
     <>
       <Head>
         <title>
-          {!state.isFetching ? state.data.category : ''} - Questão {totalAnwser}
+          {!state.isFetching ? state.data.category : ''} - Question {totalAnwser}
         </title>
       </Head>
       <style jsx>{styles}</style>
@@ -130,12 +130,12 @@ const Question = () => {
             <h1>
               {state.data.category}
               <a href="/">
-                <img src={CLOSE} alt="Fechar" /> Fechar
+                <img src={CLOSE} alt="Close" /> Close
               </a>
             </h1>
             <Box>
               <h2>
-                Questão {totalAnwser} <Level id={state.data.difficulty} />
+                Question {totalAnwser} <Level id={state.data.difficulty} />
               </h2>
               <p>{state.data.question}</p>
               <ul className="question-item">
@@ -153,7 +153,7 @@ const Question = () => {
               </ul>
               <footer>
                 <Button
-                  label="Responder"
+                  label="Answer"
                   onClick={submitAnswer}
                   disabled={selectedId == null}
                 />

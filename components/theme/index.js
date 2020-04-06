@@ -22,7 +22,7 @@ const theme = {
             default: '16px',
             title: '24px',
             subtitle: '18px',
-            mobileHighlight: '44px',
+            mobileHighlight: '28px',
             tabletHighlight: '34px',
             highlight: '44px'
         }

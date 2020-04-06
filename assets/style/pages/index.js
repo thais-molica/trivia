@@ -3,7 +3,7 @@ import theme from '../../../components/theme';
 
 export default css`
     h1 {    
-        font-size: ${theme.font.size.mobileHighlight};
+        font-size: ${theme.font.size.highlight};
         margin: ${theme.spacing(4)} 0 ${theme.spacing(2)};
     }
     ul {

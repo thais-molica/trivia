@@ -27,17 +27,17 @@ const Result = () => {
   return (
     <>
       <Head>
-        <title>Trivia - Resultado - {category}</title>
+        <title>Trivia - Result - {category}</title>
       </Head>
       <style jsx>{styles}</style>
       <Base className="page-result">
         <Box>
           <header>
             <span>
-              <h1>Parabéns!</h1>
-              <h2>Você finalizou o teste</h2>
+              <h1>Congratulations!</h1>
+              <h2>You finished the test</h2>
             </span>
-            <p>Veja seu desempenho nas questões</p>
+            <p>See your performance</p>
           </header>
           {!isLoading && (
             <>
@@ -59,7 +59,7 @@ const Result = () => {
             </>
           )}
           <Button
-            label="Voltar ao início"
+            label="Back to beginning"
             onClick={() => {
               window.location = "/";
             }}
