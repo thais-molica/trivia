@@ -1,14 +1,14 @@
 # trivia
 
-###Como rodar o projeto
+### Como rodar o projeto
 É preciso ter node e npm instalados na máquina, ao baixar o app, rodar ``npm i`` para instalar as dependências
 Para rodar o projeto em modo dev ``npm run dev``
 Para otimizar para produção ``npm run build``
 
-##Como rodar os testes
+### Como rodar os testes
 ``npm run test``
 
-##Libs
+### Libs
 
 - axios: ``^0.19.2``
 - next: ``^9.3.2``
