@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal renders correctly 1`] = `
+Array [
+  <span
+    className="jsx-3406660994"
+  />,
+  <div
+    className="jsx-3406660994 jsx-1940825489"
+  >
+    <em
+      className="jsx-3406660994"
+    >
+      <img
+        alt="erro"
+        className="jsx-3406660994"
+        src={[Function]}
+      />
+    </em>
+    <p
+      className="jsx-3406660994"
+    >
+      Você errou!
+    </p>
+    <button
+      className="jsx-1173346177"
+      onClick={[Function]}
+    >
+      Avançar 
+      <img
+        alt="Avançar"
+        className="jsx-3406660994"
+        src={[Function]}
+      />
+    </button>
+  </div>,
+]
+`;

@@ -5,4 +5,8 @@ module.exports = {
     collectCoverage: true,
     collectCoverageFrom: ['components/**/*.js', 'pages/**/*.js'],
     coverageReporters: ['lcov', 'text'],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.svg$": "jest-svg-transformer"
+  }
   };

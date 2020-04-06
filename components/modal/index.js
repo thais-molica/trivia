@@ -20,14 +20,14 @@ const Modal = ({ onClose, success }) => {
         <em>
           <img
             src={success ? SUCCESS : ERROR}
-            alt={success ? "sucesso" : "erro"}
+            alt={success ? "success" : "erroe"}
           />
         </em>
-        <p>{success ? "Você acertou!" : "Você errou!"}</p>
+        <p>{success ? "Right answer!" : "Wrong answer!"}</p>
         <Button
           label={
             <>
-              Avançar <img src={ARROW} alt="Avançar" />
+              Next <img src={ARROW} alt="Next" />
             </>
           }
           onClick={handleClose}

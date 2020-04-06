@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import "@testing-library/jest-dom/extend-expect";
-import Header from "./index";
+import FullScore from "./index";
 
-it("Header renders correctly", () => {
-  const tree = renderer.create(<Header />).toJSON();
+it("FullScore renders correctly", () => {
+  const tree = renderer.create(<FullScore correct={1}  error={1} />).toJSON();
   expect(tree).toMatchSnapshot();
 });

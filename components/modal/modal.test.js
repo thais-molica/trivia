@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import "@testing-library/jest-dom/extend-expect";
-import Header from "./index";
+import Modal from "./index";
 
-it("Header renders correctly", () => {
-  const tree = renderer.create(<Header />).toJSON();
+it("Modal renders correctly", () => {
+  const tree = renderer.create(<Modal/>).toJSON();
   expect(tree).toMatchSnapshot();
 });

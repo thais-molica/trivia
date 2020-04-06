@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Score renders correctly 1`] = `
+Array [
+  <strong
+    className="jsx-318927243"
+  >
+    easy
+  </strong>,
+  <span
+    className="jsx-318927243"
+  >
+    Correct: 
+    3
+  </span>,
+  <span
+    className="jsx-318927243"
+  >
+    Incorrect: 
+    5
+  </span>,
+]
+`;

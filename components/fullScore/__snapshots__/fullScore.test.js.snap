@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FullScore renders correctly 1`] = `
+<div
+  className="jsx-948137128"
+>
+  <span
+    className="jsx-948137128"
+  >
+    <strong
+      className="jsx-948137128"
+    >
+      1
+    </strong>
+     correct
+  </span>
+  <span
+    className="jsx-948137128"
+  >
+    <strong
+      className="jsx-948137128"
+    >
+      1
+    </strong>
+     incorrect
+  </span>
+</div>
+`;

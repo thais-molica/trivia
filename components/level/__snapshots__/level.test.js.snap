@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Level renders correctly 1`] = `
+<div
+  className="jsx-3320805743"
+>
+  <img
+    alt="level"
+    className="jsx-1677436475"
+    src={[Function]}
+  />
+  <img
+    alt="level"
+    className="jsx-1710938339"
+    src={[Function]}
+  />
+  <img
+    alt="level"
+    className="jsx-1710938339"
+    src={[Function]}
+  />
+  <span
+    className="jsx-3320805743"
+  >
+    easy
+  </span>
+</div>
+`;

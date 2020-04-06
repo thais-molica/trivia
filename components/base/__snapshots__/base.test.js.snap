@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Base renders correctly 1`] = `
+Array [
+  <header
+    className="jsx-9438985"
+  >
+    <a
+      className="jsx-9438985"
+      href="/"
+    >
+      Teste Dev Frontend
+    </a>
+  </header>,
+  <div
+    className="jsx-3040147036 "
+  >
+    <div>
+      teste
+    </div>
+  </div>,
+]
+`;

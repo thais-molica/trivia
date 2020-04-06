@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box renders correctly 1`] = `
+<div
+  className="jsx-2247176598 box"
+  onClick={[Function]}
+>
+  teste
+</div>
+`;

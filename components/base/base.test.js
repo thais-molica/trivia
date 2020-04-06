@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import "@testing-library/jest-dom/extend-expect";
-import Header from "./index";
+import Base from "./index";
 
-it("Header renders correctly", () => {
-  const tree = renderer.create(<Header />).toJSON();
+it("Base renders correctly", () => {
+  const tree = renderer.create(<Base><div>teste</div></Base>).toJSON();
   expect(tree).toMatchSnapshot();
 });

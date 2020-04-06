@@ -14,7 +14,7 @@ const Index = () => {
       </Head>
       <style jsx>{styles}</style>
       <Base className="page-home">
-        <h1>Categorias</h1>
+        <h1>Categories</h1>
         <ul>
           {categories.map(item => (
             <li className="category-list" key={uuid()}>

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Star renders correctly 1`] = `
+<img
+  alt="alt"
+  className="jsx-1677436475"
+  src={[Function]}
+/>
+`;
