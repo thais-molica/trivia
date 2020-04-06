@@ -1,13 +1,19 @@
-import { INCREMENT_TOTAL_ANSWER } from "../actions/questionActions";
+import { INCREMENT_TOTAL_ANSWER, GET_DATA_REQUEST, GET_DATA_SUCCESS, GET_DATA_FAILURE } from "../actions/questionActions";
 
-let initialState = [];
+
+let initialState = {
+  data: [],
+  answer: [],
+  isFetching: true,
+  error: false
+};
 
 const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT_TOTAL_ANSWER: {
-      const itemIndex = state.findIndex(el => el.id == action.payload.id);
+      const itemIndex = state.answer.findIndex(el => el.id == action.payload.id);
       if (itemIndex >= 0) {
-        let item = state[itemIndex];
+        let item = state.answer[itemIndex];
         if (item.total < 10) {
           if (action.payload.isCorrect) {
             item.totalCorrect += 1;
@@ -21,10 +27,10 @@ const questionReducer = (state = initialState, action) => {
           item.total += 1;
           item.prevDifficulty = item.difficulty;
           item.difficulty = action.payload.difficulty;
-          state[itemIndex] = item;
+          state.answer[itemIndex] = item;
           item.question.push(action.payload.question);
         }
-        return [...state];
+        return {...state};
       } else {
         const item = {
           id: action.payload.id,
@@ -59,9 +65,16 @@ const questionReducer = (state = initialState, action) => {
         } else {
           item.level[action.payload.difficulty].totalIncorrect = 1;
         }
-        return [...state, item];
+        state.answer.push(item);
+        return {...state};
       }
     }
+    case 'GET_DATA_REQUEST': 
+      return { ...state, isFetching: true };
+    case 'GET_DATA_SUCCESS': 
+      return { ...state, isFetching: false, data: action.payload };
+    case 'GET_DATA_FAILURE': 
+      return { ...state, isFetching: false, error: true };
     default:
       return state;
   }

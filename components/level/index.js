@@ -10,9 +10,9 @@ const Level = ({ id }) => {
       <style jsx>{styles}</style>
       <div>
         <Stars alt="level" />
-        <Stars alt="level" disabled={id < 1} />
-        <Stars alt="level" disabled={id < 2} />
-        <span>{difficultyDic[id]}</span>
+        <Stars alt="level" disabled={id == 'easy' } />
+        <Stars alt="level" disabled={id == 'easy' || id == 'hard'} />
+        <span>{id}</span>
       </div>
     </>
   );
@@ -21,5 +21,5 @@ const Level = ({ id }) => {
 export default Level;
 
 Level.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.string.isRequired
 };

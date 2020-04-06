@@ -18,7 +18,7 @@ const Result = () => {
   const category = categories.filter(item => item.id == categoryId)[0].name;
 
   const categoryResults = useSelector(state =>
-    state.find(el => el.id == categoryId)
+    state.answer.find(el => el.id == categoryId)
   );
 
   useEffect(() => {
