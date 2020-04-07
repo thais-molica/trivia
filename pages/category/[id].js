@@ -125,7 +125,7 @@ const Question = () => {
       </Head>
       <style jsx>{styles}</style>
       <Base className="page-question">
-        {!state.isFetching && (
+        {!state.isFetching && !state.error && (
           <>
             <h1>
               {state.data.category}
@@ -161,7 +161,7 @@ const Question = () => {
             </Box>
           </>
         )}
-        {state.error && "Ocorreu um erro"}
+        {state.error && <h1>Ocorreu um erro</h1>}
       </Base>
       {hasAnswer && <Modal success={isCorrectAnswer} onClose={handleNext} />}
     </>
